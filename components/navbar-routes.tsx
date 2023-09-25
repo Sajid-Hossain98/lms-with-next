@@ -3,7 +3,7 @@
 import { UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
+import { GraduationCap, LogOut } from "lucide-react";
 import Link from "next/link";
 
 const NavbarRoutes = () => {
@@ -16,7 +16,11 @@ const NavbarRoutes = () => {
     <div className="flex gap-x-2 ml-auto">
       {isTeacherPage || isPlayerPage ? (
         <Link href="/">
-          <Button>
+          <Button
+            size="sm"
+            variant="secondary"
+            className="hover:bg-slate-300/40"
+          >
             <LogOut className="h-4 w-4 mr-2" />
             Exit
           </Button>
@@ -28,6 +32,7 @@ const NavbarRoutes = () => {
             variant="secondary"
             className="hover:bg-slate-300/40"
           >
+            <GraduationCap className="h-4 w-4 mr-2" />
             Teacher Mode
           </Button>
         </Link>
