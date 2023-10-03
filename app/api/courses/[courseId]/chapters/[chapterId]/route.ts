@@ -14,14 +14,14 @@ export async function PATCH(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const courseOwner = await db.course.findUnique({
+    const ownCourse = await db.course.findUnique({
       where: {
         id: params.courseId,
         userId,
       },
     });
 
-    if (!courseOwner) {
+    if (!ownCourse) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
@@ -36,10 +36,8 @@ export async function PATCH(
     });
 
     return NextResponse.json(chapter);
-
-    // TODO: handle video upload
   } catch (error) {
-    console.log("CHAPTER_ID", error);
-    return new NextResponse("Internal error", { status: 500 });
+    console.log("[COURSES_CHAPTER_ID]", error);
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }
