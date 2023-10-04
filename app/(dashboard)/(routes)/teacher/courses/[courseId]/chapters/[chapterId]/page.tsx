@@ -76,7 +76,7 @@ const ChapterIdPage = async ({
             />
             <ChapterDescriptionForm
               initialData={chapter}
-              courseId={params.chapterId}
+              courseId={params.courseId}
               chapterId={params.chapterId}
             />
           </div>
