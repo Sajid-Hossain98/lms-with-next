@@ -82,7 +82,7 @@ body,
 }
 
 .scrollbar-w::-webkit-scrollbar {
-  height: 0.6rem;
+  height: 0.4rem;
 }
 
 .scrollbar-thumb::-webkit-scrollbar-thumb {
