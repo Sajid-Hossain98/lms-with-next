@@ -4,6 +4,12 @@ import { redirect } from "next/navigation";
 import DataCard from "./_components/data-card";
 import Chart from "./_components/chart";
 
+export const metadata = {
+  title: "lms | Analytics",
+  description:
+    "The analytics of the currently logged in teacher will shown in this page. Meaning how are the courses that they have published doing. ",
+};
+
 const AnalyticsPage = async () => {
   const { userId } = auth();
 
