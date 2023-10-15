@@ -11,6 +11,30 @@ import ChapterVideoForm from "./_components/chapter-video-form";
 import Banner from "@/components/banner";
 import ChapterActions from "./_components/chapter-actions";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { courseId: string; chapterId: string };
+}) {
+  const { userId } = auth();
+
+  if (!userId) {
+    return;
+  }
+
+  const chapter = await db.chapter.findUnique({
+    where: {
+      id: params.chapterId,
+      courseId: params.courseId,
+    },
+  });
+
+  return {
+    title: `lms | Edit-${chapter?.title}`,
+    description: `${chapter?.description} | Edit or fill the course details such as title, description, price or creating a chapter.`,
+  };
+}
+
 const ChapterIdPage = async ({
   params,
 }: {

@@ -18,6 +18,30 @@ import ChaptersForm from "./_components/chapters-form";
 import Banner from "@/components/banner";
 import Actions from "./_components/actions";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { courseId: string };
+}) {
+  const { userId } = auth();
+
+  if (!userId) {
+    return;
+  }
+
+  const course = await db.course.findUnique({
+    where: {
+      id: params.courseId,
+      userId,
+    },
+  });
+
+  return {
+    title: `lms | Edit-${course?.title}`,
+    description: `${course?.description} | Edit or fill the course details such as title, description, price or creating a chapter.`,
+  };
+}
+
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
 
