@@ -9,6 +9,29 @@ import Preview from "@/components/preview";
 import { File } from "lucide-react";
 import CourseProgressButton from "./_components/course-progress-button";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { courseId: string; chapterId: string };
+}) {
+  const { userId } = auth();
+
+  if (userId === null) {
+    return;
+  }
+
+  const { chapter } = await getChapter({
+    userId,
+    chapterId: params.chapterId,
+    courseId: params.courseId,
+  });
+
+  return {
+    title: chapter?.title,
+    description: chapter?.description,
+  };
+}
+
 const ChapterIdPage = async ({
   params,
 }: {
