@@ -13,6 +13,29 @@ interface SearchPageProps {
   };
 }
 
+//!Metadata
+export async function generateMetadata({ searchParams }: SearchPageProps) {
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  const selectedCategory = categories.filter(
+    (category) => category.id === searchParams?.categoryId
+  );
+
+  const selectedCategoryName = selectedCategory.map((item) => {
+    return item.name;
+  });
+  return {
+    title: selectedCategoryName.length
+      ? `Search | ${selectedCategoryName}`
+      : `Search`,
+    description: "Search for courses.",
+  };
+}
+
 const SearchPage = async ({ searchParams }: SearchPageProps) => {
   const { userId } = auth();
 
