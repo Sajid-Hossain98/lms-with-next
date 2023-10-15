@@ -14,12 +14,10 @@ interface SearchPageProps {
 }
 
 //!Metadata
-export async function generateMetadata({ searchParams }: SearchPageProps) {
-  return {
-    title: `Search ${searchParams.title ? `| ${searchParams.title}` : ""}`,
-    description: "Search for courses.",
-  };
-}
+export const metadata = {
+  title: "Search",
+  description: "Search for courses.",
+};
 
 const SearchPage = async ({ searchParams }: SearchPageProps) => {
   const { userId } = auth();
