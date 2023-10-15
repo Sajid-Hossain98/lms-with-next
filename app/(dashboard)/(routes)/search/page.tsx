@@ -15,23 +15,8 @@ interface SearchPageProps {
 
 //!Metadata
 export async function generateMetadata({ searchParams }: SearchPageProps) {
-  const categories = await db.category.findMany({
-    orderBy: {
-      name: "asc",
-    },
-  });
-
-  const selectedCategory = categories.filter(
-    (category) => category.id === searchParams?.categoryId
-  );
-
-  const selectedCategoryName = selectedCategory.map((item) => {
-    return item.name;
-  });
   return {
-    title: selectedCategoryName.length
-      ? `Search | ${selectedCategoryName}`
-      : `Search`,
+    title: `Search ${searchParams.title ? `| ${searchParams.title}` : ""}`,
     description: "Search for courses.",
   };
 }
